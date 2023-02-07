@@ -1,0 +1,33 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Generated files
+bin/
+gen/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Android Studio
+local.properties
+.idea/
+.gradle/
+build/
+*.iml
+*.apk
+
+app/release/output\.json
