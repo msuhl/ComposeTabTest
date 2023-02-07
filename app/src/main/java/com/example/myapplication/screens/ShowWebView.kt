@@ -20,7 +20,7 @@ fun ShowWebView(url: String) {
     WebView(
         modifier = Modifier
             .background(Color.White)
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(10.dp),
         state = webState,
         onCreated = {

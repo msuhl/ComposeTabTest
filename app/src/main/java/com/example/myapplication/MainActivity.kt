@@ -77,7 +77,7 @@ private fun MyTabRow(
         count = tabRowItems.size,
         state = pagerState,
     ) {
-        ShowWebView("http://tv2.dk")
+        ShowWebView("http://google.com")
 //        tabRowItems[pagerState.currentPage].screen()
     }
 }
