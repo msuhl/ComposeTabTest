@@ -1,11 +1,13 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -28,13 +30,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val pagerState = rememberPagerState()
-            val coroutineScope = rememberCoroutineScope()
 
             Column(
                 modifier = Modifier
             ) {
-                MyTabRow(pagerState = pagerState, coroutineScope = coroutineScope)
+                TopScreen()
             }
         }
     }
@@ -43,10 +43,33 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
+fun TopScreen(
+){
+    Scaffold(
+        backgroundColor = Color.White,
+        topBar = { },
+    ) { paddingValues ->
+        Surface(
+            color = MaterialTheme.colors.background
+        ) {
+            Column(modifier = Modifier.padding(paddingValues)) {
+                MyTabRow(
+                )
+            }
+        }
+    }
+
+
+    }
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
 private fun MyTabRow(
-    pagerState: PagerState,
-    coroutineScope: CoroutineScope,
 ) {
+    val coroutineScope = rememberCoroutineScope()
+    val pagerState = rememberPagerState()
+
+    Log.d("Svend ", "My tab row recompose")
     TabRow(
         selectedTabIndex = pagerState.currentPage,
         indicator = { tabPositions ->
@@ -55,7 +78,7 @@ private fun MyTabRow(
                 color = MaterialTheme.colors.secondary
             )
         },
-        ) {
+    ) {
         tabRowItems.forEachIndexed { index, item ->
             Tab(
                 selected = pagerState.currentPage == index,
@@ -70,14 +93,13 @@ private fun MyTabRow(
                         overflow = TextOverflow.Ellipsis,
                     )
                 },
-                )
+            )
         }
     }
     HorizontalPager(
         count = tabRowItems.size,
         state = pagerState,
     ) {
-        ShowWebView("http://google.com")
-//        tabRowItems[pagerState.currentPage].screen()
+        tabRowItems[pagerState.currentPage].screen()
     }
 }
